@@ -23,7 +23,7 @@ namespace Családfa
         {
             Infok tars = new Infok(V.Pop(), alany.Fe ? L.Pop() : F.Pop(), !alany.Fe);
             
-            for (int i = 0; i < r.Next(6); i++)
+            for (int i = 0; i < r.Next(1,1); i++)
             {
                 if (alany.Fe)
                 {
@@ -36,7 +36,7 @@ namespace Családfa
                 else
                 {
                     int nem = r.Next(2);
-                    Infok gyerek = new Infok(V.Pop(), nem == 0 ? F.Pop() : L.Pop(), nem == 0 );
+                    Infok gyerek = new Infok(tars.V, nem == 0 ? F.Pop() : L.Pop(), nem == 0 );
                     Console.WriteLine($"\"{tars.V} {tars.N}\" -> \"{gyerek.V} {gyerek.N}\"");
                     Console.WriteLine($"\"{alany.V} {alany.N}\" -> \"{gyerek.V} {gyerek.N}\"");
                     O.Push(gyerek);
@@ -60,7 +60,6 @@ namespace Családfa
             string en = er == 0 ? F.Pop() : L.Pop();
             Infok elso = new Infok(V.Pop(), en,er==0?true:false);
             lehet.Push(elso);
-            Párcsinálás(elso, V, F, L, lehet);
             while (V.Count>0)
             {
                 Párcsinálás(lehet.Pop(), V, F, L, lehet);
